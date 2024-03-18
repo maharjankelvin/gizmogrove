@@ -22,7 +22,7 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <img src="/images/cart.png" alt="cart" width="30px">
+            <img src="images/cart.png" alt="cart" width="30px">
             </div>
             <div class="row">
                 <div class="col-2">

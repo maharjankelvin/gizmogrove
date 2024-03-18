@@ -64,13 +64,6 @@ p{
 .header{
     background: radial-gradient(rgb(236, 236, 184),rgba(103, 211, 250, 0.747));
 }
-
-.container-2{
-    max-width: 1300px;
-    margin: auto;
-    padding-left: 25px;
-    padding-right: 25px;
-}
 .categories{
     margin: 70px 0;
 }
