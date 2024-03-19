@@ -79,6 +79,8 @@ p{
 /* Add these styles to your existing CSS */
 /* Update the CSS for the category section */
 
+/* Update the CSS for the category section */
+
 .categories {
     margin-top: 50px; /* Adjust the margin as needed */
     padding: 20px;
@@ -91,7 +93,6 @@ p{
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
 }
 
 .categories .col-2 {
@@ -129,3 +130,4 @@ p{
 .categories .button:hover {
     background-color: #0056b3;
 }
+
