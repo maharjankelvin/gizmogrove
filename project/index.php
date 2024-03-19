@@ -16,8 +16,8 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#laptops">Laptops</a></li>
-                    <li><a href="#accessories">Accessories</a></li>
+                    <li><a href="laptops.php">Laptops</a></li>
+                    <li><a href="accessories.php">Accessories</a></li>
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
