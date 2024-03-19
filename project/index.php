@@ -22,7 +22,7 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <img src="images/cart.png" alt="cart" width="30px">
+            <img src="./images/cart.png" alt="cart" width="30px">
             </div>
             <div class="row">
                 <div class="col-2">
@@ -31,7 +31,7 @@
                     <a href="" class="button">Shop Now! &#8594;</a>
                 </div>
                 <div class="col-2">
-                    <img src="images/no_bg_laptop.png">
+                    <img src="./images/no_bg_laptop.png">
                 </div>
             </div>
         </div>
@@ -39,16 +39,14 @@
     <!-------features catahories ------->
     <div class="categories">
         <div class="row">
-            <div class="small-cointainer">
-                <div class="col-3">
-                    <img src="images/pexels-format-1029757.jpg">
+            <div class="col-2">
+                    <img src="images/accessories.jpg">
                 </div>
-                <div class="col-3">
-                    <img src="images/pexels-format-1029757.jpg">
+                <div class="col-2">
+                    <h1>Find the best accessories <br>for your laptop.</h1>
+                    <p>upgrade the standards of your laptop</p>
+                    <a href="" class="button">Shop Now! &#8594;</a>
                 </div>
-                <div class="col-3">
-                    <img src="images/pexels-format-1029757.jpg">
-            </div>
         </div>
     </div>
 </body>

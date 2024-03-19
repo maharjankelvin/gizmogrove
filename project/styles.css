@@ -75,9 +75,57 @@ p{
 .col-3 img{
     width:100%;
 }
-.small-container{
-    max-width: 1080px;
-    margin:auto;
-    padding-left: 25px;
-    padding-right: 25px;
+/*catagory*/
+/* Add these styles to your existing CSS */
+/* Update the CSS for the category section */
+
+.categories {
+    margin-top: 50px; /* Adjust the margin as needed */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.categories .row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.categories .col-2 {
+    width: 45%; /* Adjust the width as needed */
+    padding: 20px;
+    margin: 10px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+}
+
+.categories h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.categories p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.categories .button {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none; /* Added to remove underline */
+}
+
+.categories .button:hover {
+    background-color: #0056b3;
 }
