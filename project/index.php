@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laptop Selling Website</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
     <div class="header">
@@ -36,17 +36,21 @@
             </div>
         </div>
     </div>
+
     <!-------features catahories ------->
     <div class="categories">
-        <div class="row">
-            <div class="col-2">
-                    <img src="images/accessories.jpg">
-                </div>
-                <div class="col-2">
-                    <h1>Find the best accessories <br>for your laptop.</h1>
-                    <p>upgrade the standards of your laptop</p>
-                    <a href="" class="button">Shop Now! &#8594;</a>
-                </div>
+        <div class="small-container">
+            <div class="row">
+            <div class="col-3">
+                <img src="assets/images/laptop1.jpg">
+            </div>
+            <div class="col-3"> 
+                <img src="assets/images/laptop1.jpg">
+            </div>
+            <div class="col-3"> 
+                <img src="assets/images/laptop1.jpg">
+            </div>
+            </div>
         </div>
     </div>
 </body>
