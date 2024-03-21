@@ -25,7 +25,7 @@ a{
     color: black;
 }
 p{
-    size: 20px;
+    font-size: 20px;
     color: black;
 }
 .container{
@@ -55,7 +55,7 @@ p{
     padding: 8px 30px;
     margin: 30px 0;
     border-radius: 30px;
-    transition: background 0.5;
+    transition: background 0.5s;
 
 }
 .button:hover{
@@ -65,7 +65,7 @@ p{
     background: radial-gradient(rgb(236, 236, 184),rgba(103, 211, 250, 0.747));
 }
 .header .row{
-    margin-top:70px;
+    margin-top:50px;
 }
 
 .catagories{
@@ -84,4 +84,31 @@ p{
     margin: auto;
     padding-left: 25px;
     padding-right: 25px;
+}
+
+.col-4{
+    flex-basis: 25% ;
+    width: 200px;
+    padding: 10px;
+    min-width: 200px;
+    padding-bottom: 25px;
+    padding-top:  25px;
+}
+.col-4 img{
+    width: 100%;
+}
+.feature-title{
+    text-align: center;
+    margin : 0 auto 80 px;
+    position: relative;
+    line-height: 60px;
+    color:black;
+}
+.feature-title::after{
+    content:'';
+    background: rgba(103, 211, 250, 0.747);
+    width : 80px;
+    height:50px;
+    border-radius:5px;
+    position:absolute;
 }

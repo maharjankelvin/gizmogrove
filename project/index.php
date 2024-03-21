@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,20 +9,7 @@
 <body>
     <div class="header">
         <div class="container">
-            <div class="navbar">
-                <div class="logo">
-                <img src="images/Gizmo.jpg" width=125 alt="laptop image"/>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="laptops.php">Laptops</a></li>
-                    <li><a href="accessories.php">Accessories</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-            <img src="./images/cart.png" alt="cart" width="30px">
-            </div>
+        <?php include('navbar.php'); ?>
             <div class="row">
                 <div class="col-2">
                     <h1>Find the best laptop <br>money can afford.</h1>
@@ -38,20 +24,13 @@
     </div>
 
     <!-------features catahories ------->
-    <div class="categories">
-        <div class="small-container">
-            <div class="row">
-            <div class="col-3">
-                <img src="assets/images/laptop1.jpg">
-            </div>
-            <div class="col-3"> 
-                <img src="assets/images/laptop1.jpg">
-            </div>
-            <div class="col-3"> 
-                <img src="assets/images/laptop1.jpg">
-            </div>
-            </div>
-        </div>
-    </div>
+
+    <?php include('featured_catagory.php'); ?>
+
+    <!-- ========features products======= -->
+    
+    <?php include('featured_products.php'); ?>
+
+<?php include 'footer.php'; ?>
 </body>
 </html>
