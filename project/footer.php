@@ -1,11 +1,14 @@
-<!-- footer.php -->
-
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <p>&copy; <?php echo date("Y"); ?> Your Website Name. All rights reserved.</p>
+<footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p>&copy; 2023 Laptop Selling Website. All rights reserved.</p>
+                    <ul class="footer-nav">
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>

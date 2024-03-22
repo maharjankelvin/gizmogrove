@@ -65,19 +65,23 @@ p{
     background: radial-gradient(rgb(236, 236, 184),rgba(103, 211, 250, 0.747));
 }
 .header .row{
-    margin-top:50px;
+    margin-top: 50px;
 }
 
-.catagories{
-    margin:70 px 0;
+.categories {
+    margin-top: 50px; /* Adjust top margin to match the hero section */
 }
-.col-3{
+
+.col-3 {
     flex-basis: 30%;
-    min-width: 250px;
+    min-width: 200px; /* Adjust minimum width */
     margin-bottom: 30px;
+    margin-right: 20px; /* Add right margin to create space between columns */
 }
-.col-3 img{
-    width:100%;
+
+.col-3 img {
+    width: 100%;
+    height: auto;
 }
 .small-cointainer{
     max-width: 1080px;
@@ -86,16 +90,18 @@ p{
     padding-right: 25px;
 }
 
-.col-4{
-    flex-basis: 25% ;
-    width: 200px;
+.col-4 {
+    flex-basis: 25%;
+    width: 25%;
     padding: 10px;
     min-width: 200px;
     padding-bottom: 25px;
-    padding-top:  25px;
+    padding-top: 25px;
 }
-.col-4 img{
+
+.col-4 img {
     width: 100%;
+    height: auto; /* To maintain aspect ratio */
 }
 .feature-title{
     text-align: center;
@@ -112,3 +118,32 @@ p{
     border-radius:5px;
     position:absolute;
 }
+
+/* Footer styles */
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer p {
+    margin-bottom: 10px;
+}
+
+.footer-nav {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-nav li {
+    display: inline;
+    margin-right: 10px;
+}
+
+.footer-nav li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+

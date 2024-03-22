@@ -17,7 +17,7 @@
                     <a href="" class="button">Shop Now! &#8594;</a>
                 </div>
                 <div class="col-2">
-                    <img src="./images/no_bg_laptop.png">
+                    <img src="assets/images/no_bg_laptop.png">
                 </div>
             </div>
         </div>
