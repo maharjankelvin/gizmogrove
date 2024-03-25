@@ -3,11 +3,10 @@
 include 'server/connection.php';
 
 
- $sql = "select * from products limit 4";
+ $sql = "SELECT * FROM Products ORDER BY RAND() LIMIT 4";
+
  $all_product = $conn->query($sql); 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
