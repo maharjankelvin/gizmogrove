@@ -18,6 +18,7 @@
                     <th>ID</th>
                     <th>Product Name</th>
                     <th>Price</th>
+                    <th>stock</th>
                     <th>Image</th>
                     <th>Actions</th>
                 </tr>
@@ -31,6 +32,7 @@
                         echo "<td>" . $row["product_id"] . "</td>";
                         echo "<td>" . $row["product_name"] . "</td>";
                         echo "<td>" . $row["price"] . "</td>";
+                        echo "<td>" . $row["stock"] . "</td>";
                         echo "<td><img src='data:image/jpeg;base64," . base64_encode($row["product_image"]) . "' width='200' height='200' /></td>";
                         echo "<td><a href='update_product.php?id=" . $row["product_id"] . "'>Edit</a> | <a href='delete_product.php?id=" . $row["product_id"] . "'>Delete</a></td>";
                         echo "</tr>";

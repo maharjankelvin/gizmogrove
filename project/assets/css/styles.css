@@ -6,7 +6,7 @@
 .navbar{
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
 }
 nav{
     flex: 1;
@@ -65,11 +65,11 @@ p{
     background: radial-gradient(rgb(236, 236, 184),rgba(103, 211, 250, 0.747));
 }
 .header .row{
-    margin-top: 50px;
+    margin-top: 0px;
 }
 
 .categories {
-    margin-top: 50px; /* Adjust top margin to match the hero section */
+    margin-top: 10px; /* Adjust top margin to match the hero section */
 }
 
 .col-3 {
@@ -149,3 +149,43 @@ p{
 
 /* Footer styles end*/
 
+/*display product css*/
+
+.container-products {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center; /* Center the content horizontally */
+}
+
+.container-products h1 {
+    margin-bottom: 20px;
+}
+
+.container-products form {
+    display: inline-block; /* Display forms in a line */
+    margin-bottom: 20px;
+}
+
+.container-products form:not(:last-child) {
+    margin-right: 10px; /* Add margin between forms */
+}
+
+.container-products form select,
+.container-products form input[type="text"],
+.container-products form button {
+    vertical-align: middle; /* Align form elements vertically */
+}
+
+.container-products form button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.container-products form button:hover {
+    background-color: #555;
+}
