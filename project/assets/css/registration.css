@@ -14,7 +14,7 @@ div {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 400px; /* Increase the width of the div */
 }
 
 h2 {
@@ -26,8 +26,7 @@ form {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 90%; /* Make the form width 100% */
 }
 
 label {
@@ -35,11 +34,13 @@ label {
 }
 
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="email"] {
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    width: calc(100% - 10px); /* Adjust the width to accommodate padding and border */
 }
 
 input[type="submit"] {
@@ -52,5 +53,5 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background
+    background: #0056b3; /* Darker shade of blue on hover */
 }

@@ -1,7 +1,9 @@
 <?php
+session_start(); // Start session to store user information
+
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = ""; // Replace with a secure way to store credentials
 $database = "gizmogrove";
 
 $conn = new mysqli($servername, $username, $password, $database);
@@ -11,33 +13,30 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = $_POST['username']; 
+    $password = $_POST['password']; 
 
     // Prepare and bind the statement
-    $stmt = $conn->prepare("SELECT user_id, user_type, password FROM user_details WHERE username = ?");
-    $stmt->bind_param("s", $username);
+    $stmt = $conn->prepare("SELECT user_id, user_type, Password FROM user_details WHERE username = ?");
+    $stmt->bind_param("s", $username); // Bind parameter
     $stmt->execute();
     $result = $stmt->get_result();
 
-    if ($result->num_rows > 0) {
+    if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
-        // Directly compare plaintext passwords
-        if ($password === $row['password']) {
-            // Start session and set user ID
-            session_start();
-            $_SESSION['user_id'] = $row['id'];
+        $hashed_password = $row['Password'];
+
+        if (password_verify($password, $hashed_password)) {
+            // Login successful, store user information in session 
+            $_SESSION['user_id'] = $row['user_id'];
+            $_SESSION["username"] = $username; 
 
             // Check user type and redirect accordingly
             if ($row['user_type'] == 'user') {
-                $_SESSION["username"]=$username;
-                // Redirect user to user page
-                header("Location: index.php");
+                header("Location: index.php");  // Redirect to user page
                 exit();
             } elseif ($row['user_type'] == 'admin') {
-                $_SESSION["username"]=$username;
-                // Redirect admin to admin panel
-                header("Location: admin_panel.php");
+                header("Location: admin_panel/admin_homepage.php"); // Redirect to admin panel
                 exit();
             }
         } else {
@@ -49,8 +48,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $stmt->close();
 }
+
 $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +59,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" href="login.css"> <!-- Link to your CSS file for styling -->
+    <link rel="stylesheet" href="assets/css/login.css"> <!-- Link to your CSS file for styling -->
 </head>
 <body>
     <div>
