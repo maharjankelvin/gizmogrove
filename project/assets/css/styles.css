@@ -48,6 +48,10 @@ p{
     max-width: 100%;
     padding: 50px 0;
 }
+image{
+    width:200px;
+    height:200px;
+}
 .button{
     display: inline-block;
     background: black;
@@ -117,6 +121,11 @@ p{
     height:50px;
     border-radius:5px;
     position:absolute;
+}
+
+.cart-item img {
+    width: 100px; /* Adjust the width as needed */
+    height: 100px; /* Maintain aspect ratio */
 }
 
 /* Footer styles */
@@ -189,3 +198,5 @@ p{
 .container-products form button:hover {
     background-color: #555;
 }
+
+

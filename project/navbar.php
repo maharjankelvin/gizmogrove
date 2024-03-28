@@ -4,6 +4,7 @@
             </div>
             <nav>
                 <ul>
+                    <li><a href="index.php">Home</a></li>
                     <li><a href="laptops.php">Laptops</a></li>
                     <li><a href="accessories.php">Accessories</a></li>
                     <li><a href="#about">About Us</a></li>
@@ -17,5 +18,7 @@
                 </ul>
             </nav>
             <!-- Cart Icon -->
-            <img src="assets/images/cart.png" alt="cart" width="30px">
+            <a href="cart.php">
+    <img src="assets/images/cart.png" alt="cart" width="30px">
+</a>
 </div>

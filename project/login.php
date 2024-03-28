@@ -1,9 +1,9 @@
 <?php
-session_start(); // Start session to store user information
+session_start();
 
 $servername = "localhost";
 $username = "root";
-$password = ""; // Replace with a secure way to store credentials
+$password = "";
 $database = "gizmogrove";
 
 $conn = new mysqli($servername, $username, $password, $database);
@@ -16,9 +16,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username']; 
     $password = $_POST['password']; 
 
-    // Prepare and bind the statement
     $stmt = $conn->prepare("SELECT user_id, user_type, Password FROM user_details WHERE username = ?");
-    $stmt->bind_param("s", $username); // Bind parameter
+    $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -27,16 +26,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hashed_password = $row['Password'];
 
         if (password_verify($password, $hashed_password)) {
-            // Login successful, store user information in session 
             $_SESSION['user_id'] = $row['user_id'];
             $_SESSION["username"] = $username; 
 
-            // Check user type and redirect accordingly
             if ($row['user_type'] == 'user') {
-                header("Location: index.php");  // Redirect to user page
+                header("Location: index.php");  
                 exit();
             } elseif ($row['user_type'] == 'admin') {
-                header("Location: admin_panel/admin_homepage.php"); // Redirect to admin panel
+                header("Location: admin_panel/admin_homepage.php"); 
                 exit();
             }
         } else {
@@ -59,7 +56,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" href="assets/css/login.css"> <!-- Link to your CSS file for styling -->
+    <link rel="stylesheet" href="assets/css/login.css"> 
 </head>
 <body>
     <div>

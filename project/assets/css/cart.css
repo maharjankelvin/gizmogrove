@@ -1,0 +1,67 @@
+ /* Add your CSS styles here */
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+        .cart {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .cart-item {
+            width: calc(50% - 20px);
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        .cart-item img {
+            width: 50%;
+            height: auto;
+        }
+        .cart-item-details {
+            padding: 10px;
+        }
+        .cart-item-details h3 {
+            margin: 0;
+        }
+        .quantity-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .quantity-container input {
+            width: 50px;
+            text-align: center;
+            margin-right: 10px;
+        }
+        .quantity-container button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .remove-checkbox {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .total {
+            margin-top: 20px;
+            text-align: right;
+        }
+        .actions {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .actions button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }

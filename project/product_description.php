@@ -96,9 +96,9 @@ if(isset($_GET['id'])) {
         <?php if(isset($description)) : ?>
             <p><strong>Description:</strong> <?php echo $description; ?></p>
         <?php endif; ?>
-        <!-- Add other product details here -->
         <div class="buttons">
-            <button>Add to Cart</button>
+            <button><a href="admin_panel/add_to_cart.php?id=<?php echo $row["product_id"]; ?>&source=product_description" class="btn-add-to-cart">Add to Cart</a>
+</button>
             <button>Buy Now</button>
         </div>
     </div>
