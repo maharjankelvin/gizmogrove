@@ -5,9 +5,9 @@ include_once '../server/connection.php';
 $user_id = $name = $email = '';
 
 if (isset($_GET['id'])) {
-    $user_id = $_GET['id'];
+        $user_id = $_GET['id'];
     
-    $sql = "SELECT * FROM users WHERE id = ?";
+    $sql = "SELECT * FROM user_details WHERE user_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
@@ -15,8 +15,8 @@ if (isset($_GET['id'])) {
     
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
-        $name = $user['name'];
-        $email = $user['email'];
+        $name = $user['Name'];
+        $email = $user['Email'];
     } else {
         echo "User not found.";
         exit();
@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $email = $_POST['email'];
 
-    $sql = "UPDATE users SET name = ?, email = ? WHERE id = ?";
+    $sql = "UPDATE user_details SET name = ?, email = ? WHERE user_id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssi", $name, $email, $user_id);
     if ($stmt->execute()) {

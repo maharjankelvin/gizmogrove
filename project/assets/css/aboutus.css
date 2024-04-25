@@ -1,0 +1,30 @@
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.container h1 {
+    margin-bottom: 20px;
+}
+
+.container p {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.6;
+}
+
+.highlight {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.quote {
+    margin-top: 30px;
+}
+
+.quote p {
+    font-style: italic;
+    color: #555;
+}

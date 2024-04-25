@@ -1,0 +1,38 @@
+.container-products {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.container-products h1 {
+    margin-bottom: 20px;
+}
+
+.container-products form {
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.container-products form:not(:last-child) {
+    margin-right: 10px;
+}
+
+.container-products form select,
+.container-products form input[type="text"],
+.container-products form button {
+    vertical-align: middle;
+}
+
+.container-products form button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.container-products form button:hover {
+    background-color: #555;
+}

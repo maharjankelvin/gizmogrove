@@ -40,10 +40,10 @@
             background-color: #555;
         }
     </style>
-        <link rel="stylesheet" href="assets/css/styles.css">
-
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
+  <?php include_once 'server/connection.php'; ?>
 <div class="header">
     <?php include('navbar.php'); ?>
 </div>
@@ -53,14 +53,27 @@
         <input type="text" name="search" placeholder="Search...">
         <button type="submit">Search</button>
     </form>
-    <form action="#" method="GET" class="filter-form">
-        <select name="filter">
-            <option value="">Filter by Category</option>
-            <option value="laptop">Laptop</option>
-            <option value="accessories">Accessories</option>
-        </select>
-        <button type="submit">Filter</button>
-    </form>
+    
+    <?php
+        
+
+        $sql = "SELECT DISTINCT brand FROM products where type = 'product' ORDER BY brand ASC";
+        $result = $conn->query($sql);
+        ?>
+
+        <form action="#" method="GET" class="filter-form">
+            <select name="filter">
+                <option value="">Filter by Brand</option>
+                <?php
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                echo '<option value="'.$row['brand'].'">'.$row['brand'].'</option>';
+            }
+        }
+        ?>
+    </select>
+    <button type="submit">Filter</button>
+</form>
     <form action="#" method="GET">
         <button type="submit">Clear Filter</button>
     </form>
@@ -70,33 +83,31 @@
     <?php
     include_once 'server/connection.php';
 
-    $sql = "SELECT * FROM products";
+    $sql = "SELECT * FROM products WHERE type = 'product'";
 
     if (isset($_GET['search']) && !empty($_GET['search'])) {
         $search = $_GET['search'];
-        $sql .= " WHERE product_name LIKE '%$search%'";
+        $sql .= " WHERE model LIKE '%$search%' OR brand LIKE '%$search%'";
     }
-
     if (isset($_GET['filter']) && !empty($_GET['filter'])) {
-        $category = $_GET['filter'];
-        if (strpos($sql, 'WHERE') !== false) {
-            $sql .= " AND category = '$category'";
-        } else {
-            $sql .= " WHERE category = '$category'";
-        }
+        $filter = $_GET['filter'];
+        $sql .= " AND brand = '$filter'";
     }
-
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            echo "<div class='product'>";
-            echo "<img src='data:image/jpeg;base64," . base64_encode($row["product_image"]) . "' alt='" . $row["product_name"] . "' />";
-            echo "<h3>" . $row["product_name"] . "</h3>";
-            echo "<p>Price: $" . $row["price"] . "</p>";
-            // Add button with link to product description page
-            echo "<a href='product_description.php?id=" . $row["product_id"] . "'><button>buy now </button></a>";
-            echo "</div>";
+    ?>
+    <a href="product_description.php?id=<?php echo $row["product_id"]; ?>">
+            <div class="product">
+                <img src="data:image/jpeg;base64,<?php echo base64_encode($row["product_image"]); ?>" alt="<?php echo $row["brand"] . " " . $row["model"]; ?>" />
+                <h3><?php echo $row["brand"] . " " . $row["model"]; ?></h3>
+                <p> rs <?php echo $row["price"]; ?></p>
+                <a href="add_to_cart.php?id=<?php echo $row["product_id"]; ?>&source=laptops" class="btn-add-to-cart"><button>Add to cart</button></a>
+                <a href="product_description.php?id=<?php echo $row["product_id"]; ?>"><button>View Details</button></a>
+            </div>
+    </a>
+    <?php
         }
     } else {
         echo "No products available.";
@@ -105,6 +116,7 @@
     $conn->close();
     ?>
 </div>
+<?php include('footer.php'); ?>
 
 </body>
 </html>

@@ -1,32 +1,44 @@
 <?php
-session_start();
 include_once 'server/connection.php';
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit();
+}
 
-// Check if form is submitted for adding items to cart
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id']) && isset($_GET['source'])) {
     $product_id = $_GET['id'];
     $source = $_GET['source'];
 
-    $sql = "SELECT * FROM products WHERE product_id = $product_id";
-    $result = $conn->query($sql);
+    $sql = "SELECT * FROM products WHERE product_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $product_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if ($result && $result->num_rows > 0) {
+    if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        $product_name = $row['product_name'];
         $price = $row['price'];
-        $quantity = 1; 
+        $quantity = 1;
+        $user_id = $_SESSION['user_id'];
 
-        if(isset($_SESSION['cart'][$product_id])) {
-            $_SESSION['cart'][$product_id]['quantity'] += 1;
+        // Assuming you have a logged in user with id $user_id
+        $sql = "SELECT * FROM cart WHERE product_id = ? AND user_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ii", $product_id, $user_id);
+        $stmt->execute();
+        $cart_result = $stmt->get_result();
+
+        if ($cart_result->num_rows > 0) {
+            $sql = "UPDATE cart SET quantity = quantity + 1 WHERE product_id = ? AND user_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("ii", $product_id, $user_id);
         } else {
-            $_SESSION['cart'][$product_id] = array(
-                'name' => $product_name,
-                'price' => $price,
-                'quantity' => $quantity
-            );
+            $sql = "INSERT INTO cart (product_id, user_id, quantity) VALUES (?, ?, ?)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("iii", $product_id, $user_id, $quantity);
         }
+        $stmt->execute();
 
-        // Redirect to appropriate page after adding to cart
         if($source === 'index') {
             header('Location: index.php?added_to_cart=true');
         } elseif($source === 'product_description') {
@@ -36,7 +48,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id']) && isset($_GET['so
         }
         exit();
     } else {
-        // Redirect with error message if product not found
         if($source === 'index') {
             header('Location: index.php?error=product_not_found');
         } elseif($source === 'product_description') {
@@ -47,10 +58,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id']) && isset($_GET['so
         exit();
     }
 } else {
-    // Redirect with error message if required parameters are missing
     header('Location: index.php?error=missing_parameters');
     exit();
 }
-
-$conn->close();
-?>

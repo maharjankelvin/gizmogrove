@@ -1,0 +1,132 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.error {
+    color: red;
+    font-style: italic;
+}
+
+/* Main Styles */
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Laptop selection section styles */
+.laptop-selection {
+    margin-bottom: 20px;
+}
+
+.laptop-selection h2 {
+    margin-bottom: 10px;
+}
+
+.laptop-selection form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.laptop-selection select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.laptop-selection button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.laptop-selection button:hover {
+    background-color: #555;
+}
+
+/* Comparison results section styles */
+.comparison-results {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.comparison-results h2 {
+    margin-bottom: 10px;
+}
+
+/* Comparison Table Styles */
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.comparison-table th, .comparison-table td {
+    border: 1px solid #000; /* Change border width and color */
+    padding: 8px;
+    text-align: left;
+}
+
+.comparison-table th {
+    background-color: #f2f2f2;
+}
+
+.comparison-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.comparison-table tr:hover {
+    background-color: #f2f2f2;
+}
+
+.comparison-table td:first-child {
+    width: 40%;
+}
+
+.comparison-table td {
+    width: 30%;
+}
+
+.comparison-table td:nth-child(2) {
+    text-align: center;
+}
+
+.comparison-table td:last-child {
+    text-align: right;
+}
+
+.comparison-table td img {
+    max-width: 100px; /* Adjust the max-width as needed */
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.comparison-table td.details {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.comparison-table hr {
+    border: none;
+    border-top: 1px solid #ddd;
+}

@@ -6,14 +6,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include_once '../server/connection.php';
 
     // Retrieve form data
-    $product_name = $_POST['product_name'];
+    $brand = $_POST['brand'];
+    $model = $_POST['model'];
+    $processor = $_POST['processor'];
+    $ram = $_POST['ram'];
+    $storage_capacity = $_POST['storage_capacity'];
+    $graphics_card = $_POST['graphics_card'];
+    $display_size = $_POST['display_size'];
+    $resolution = $_POST['resolution'];
     $price = $_POST['price'];
-    $stock = $_POST['stock'];
-    $category = $_POST['category'];
-    $description = $_POST['description']; // New field
-    
+
     // Process image upload
-    $image = $_FILES['image'];
+    $image = $_FILES['product_image'];
     $image_name = $image['name'];
     $image_tmp_name = $image['tmp_name'];
     $image_size = $image['size'];
@@ -27,8 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Prepare and bind the statement
-    $stmt = $conn->prepare("INSERT INTO products (product_name, price, stock, category, description, product_image) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("sdsdss", $product_name, $price, $stock, $category, $description, $image_data);
+    $stmt = $conn->prepare("INSERT INTO products (brand, model, processor, ram, storage_capacity, graphics_card, display_size, resolution, price, product_image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("ssssssssds", $brand, $model, $processor, $ram, $storage_capacity, $graphics_card, $display_size, $resolution, $price, $image_data);
     
     // Execute the statement
     if ($stmt->execute()) {
@@ -41,7 +45,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close(); // Close the connection
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,39 +52,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Product</title>
     <link rel="stylesheet" href="../assets/css/admin.css">
+    <script>
+        function validateNumberInput(inputId) {
+            var input = document.getElementById(inputId);
+            if (parseInt(input.value) < 0) {
+                input.value = 0; // Reset to 0 if negative value entered
+            }
+        }
+    </script>
 </head>
 <body>
-<?php include('admin_nav_bar.php'); ?>
-<main>
-<div class="container">
-<h2>Add Product</h2>
-    <form action="add_products.php" method="post" enctype="multipart/form-data">
-        <label for="product_name">Product Name:</label><br>
-        <input type="text" id="product_name" name="product_name" required><br>
-        
-        <label for="price">Price:</label><br>
-        <input type="number" id="price" name="price" required><br>
+    <?php include('admin_nav_bar.php'); ?>
+    <main>
+        <div class="container">
+            <h2>Add Product</h2>
+            <form action="add_products.php" method="post" enctype="multipart/form-data">
+                <label for="brand">Brand:</label><br>
+                <input type="text" id="brand" name="brand" required><br>
 
-        <label for="stock">Stock:</label><br>
-        <input type="number" id="stock" name="stock" required><br>
+                <label for="model">Model:</label><br>
+                <input type="text" id="model" name="model" required><br>
 
-        <label for="description">Description:</label><br>
-        <textarea id="description" name="description" rows="4" cols="50"></textarea><br>
+                <label for="processor">Processor:</label><br>
+                <input type="text" id="processor" name="processor" required><br>
 
-        <label for="category">Category:</label><br>
-        <select id="category" name="category">
-            <option value="laptop">Laptop</option>
-            <option value="accessories">Accessories</option>
-        </select><br>
+                <label for="ram">RAM:</label><br>
+                <input type="text" id="ram" name="ram" required><br>
 
-        
+                <label for="storage_capacity">Storage Capacity:</label><br>
+                <input type="text" id="storage_capacity" name="storage_capacity" required><br>
 
-        <label for="image">Image:</label><br>
-        <input type="file" id="image" name="image" accept="image/*" required><br>
-        <br>
-        <input type="submit" value="Add Product">
-    </form>
-</div>
-</main>
+                <label for="graphics_card">Graphics Card:</label><br>
+                <input type="text" id="graphics_card" name="graphics_card" required><br>
+
+                <label for="display_size">Display Size:</label><br>
+                <input type="text" id="display_size" name="display_size" required><br>
+
+                <label for="resolution">Resolution:</label><br>
+                <input type="text" id="resolution" name="resolution" required><br>
+
+                <label for="price">Price:</label><br>
+                <input type="number" id="price" name="price" min="0" required oninput="validateNumberInput('price')"><br>
+
+                <label for="product_image">Product Image:</label><br>
+                <input type="file" id="product_image" name="product_image" accept="image/*" required><br>
+                <br>
+                <input type="submit" value="Add Product">
+            </form>
+        </div>
+    </main>
 </body>
 </html>

@@ -1,4 +1,4 @@
-
+<?php include_once 'server/connection.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,9 +13,9 @@
         <?php include('navbar.php'); ?>
             <div class="row">
                 <div class="col-2">
-                    <h1>Find the best laptop <br>money can afford.</h1>
+                    <h1>Find the best laptop <br>and spoil your self.</h1>
                     <p>buy your dream laptop at an unbeattable prices</p>
-                    <a href="" class="button">Shop Now! &#8594;</a>
+                    <a href="laptops.php" class="button">Shop Now! &#8594;</a>
                 </div>
                 <div class="col-2">
                     <img src="assets/images/no_bg_laptop.png">
