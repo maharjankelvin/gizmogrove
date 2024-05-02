@@ -5,32 +5,37 @@ if (isset($_GET['id'])) {
     $product_id = $_GET['id'];
 
     // Fetch product details from the database
-    $product = "SELECT * FROM products WHERE product_id = $product_id";
-    $product = $conn->query($product);
-
     $rating = "SELECT AVG(rating_value) as rating FROM ratings WHERE product_id = $product_id";
     $rating = $conn->query($rating);
 
     $review = "SELECT * FROM reviews WHERE product_id = $product_id ORDER BY review_id DESC";
     $review = $conn->query($review);
 
-    if ($product->num_rows > 0) {
-        $row = $product->fetch_assoc();
+    $product = "SELECT * FROM products WHERE product_id = $product_id";
+    $product = $conn->query($product);
 
-        $brand = $row['brand'];
-        $model = $row['model'];
+    if ($product->num_rows > 0) {
+    $row = $product->fetch_assoc();
+
+    $brand = $row['brand'];
+    $model = $row['model'];
+    $price = $row['price'];
+    $image = $row['product_image'];
+    $product_type = $row['product_type'];
+    $description = $row['description'];
+
+    if ($product_type == 'laptop') {
         $processor = $row['processor'];
         $ram = $row['ram'];
         $storage_capacity = $row['storage_capacity'];
         $graphics_card = $row['graphics_card'];
         $display_size = $row['display_size'];
         $resolution = $row['resolution'];
-        $price = $row['price'];
-        $image = $row['product_image'];
-    } else {
-        echo "Product not found.";
-        exit();
     }
+} else {
+    echo "Product not found.";
+    exit();
+}
 } else {
     echo "Product ID not specified.";
     exit();
@@ -158,14 +163,17 @@ if (isset($_GET['id'])) {
                 }
             ?>
             <br>
-            <h2><?php echo isset($brand) ? $brand : "Brand"; ?> <?php echo isset($model) ? $model : "Model"; ?></h2>
+                <h2><?php echo isset($brand) ? $brand : "Brand"; ?> <?php echo isset($model) ? $model : "Model"; ?></h2>
+        <?php if ($product_type == 'laptop') : ?>
             <p><strong>Processor:</strong> <?php echo isset($processor) ? $processor : "Processor"; ?></p>
             <p><strong>RAM:</strong> <?php echo isset($ram) ? $ram : "RAM"; ?></p>
             <p><strong>Storage Capacity:</strong> <?php echo isset($storage_capacity) ? $storage_capacity : "Storage Capacity"; ?></p>
             <p><strong>Graphics Card:</strong> <?php echo isset($graphics_card) ? $graphics_card : "Graphics Card"; ?></p>
             <p><strong>Display Size:</strong> <?php echo isset($display_size) ? $display_size : "Display Size"; ?></p>
             <p><strong>Resolution:</strong> <?php echo isset($resolution) ? $resolution : "Resolution"; ?></p>
-            <p><strong>Price:</strong> $<?php echo isset($price) ? $price : "Price"; ?></p>
+        <?php endif; ?>
+        <p><strong>Price:</strong> Rs. <?php echo isset($price) ? $price : "Price"; ?></p>
+        <p><strong>Description: </strong><?php echo isset($description) ? $description : "Description"; ?></p>
 
             <div class="buttons">
                 <?php 

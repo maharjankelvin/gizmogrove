@@ -9,7 +9,7 @@
         function confirmDelete(productId) {
             var confirmDelete = confirm("Are you sure you want to delete this product?");
             if (confirmDelete) {
-                window.location.href = "delete_product.php?id=" + productId;
+                window.location.href = "delete_laptop.php?id=" + productId;
             }
         }
     </script>
@@ -18,7 +18,7 @@
 <?php include('admin_nav_bar.php'); ?>
 <main>
     <div class="container">
-        <h2>Product Management</h2><br>
+        <h2>laptop Management</h2><br>
         <!-- Display products in a table -->
         <div class="table-container">
             <table>
@@ -54,7 +54,7 @@
                         echo "<td>" . $row["resolution"] . "</td>";
                         echo "<td>" . $row["price"] . "</td>";
                         echo "<td><img src='data:image/jpeg;base64," . base64_encode($row["product_image"]) . "' width='200' height='200' /></td>";
-                        echo "<td><a href='update_product.php?id=" . $row["product_id"] . "'>Edit</a> | <a href='#' onclick='confirmDelete(" . $row["product_id"] . ")'>Delete</a></td>";
+                        echo "<td><a href='edit_laptop.php?id=" . $row["product_id"] . "'>Edit</a> | <a href='#' onclick='confirmDelete(" . $row["product_id"] . ")'>Delete</a></td>";
                         echo "</tr>";
                     }
                 } else {

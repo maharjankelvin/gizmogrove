@@ -1,6 +1,6 @@
 <?php
-require_once('server/connection.php'); // Include the database connection file
-// Check if the user is already logged in, if yes then redirect them to the dashboard
+require_once('server/connection.php'); 
+
 if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] === true) {
   if ($_SESSION["user_type"] == 'user') {
     header("Location: index.php");
@@ -18,13 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // Retrieve user details from the database
-    // $stmt = $conn->prepare("SELECT * FROM user_details WHERE Username = ?");
-    // $stmt->bind_param("s", $username);
-    // $stmt->execute();
-    // $result = $stmt->get_result();
     $sql = "SELECT * FROM user_details WHERE Username = '$username'";
     $result = $conn->query($sql);
-    
 
     if ($result->num_rows == 1) {
       $row = $result->fetch_assoc();
@@ -35,14 +30,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           $_SESSION['logged_in'] = true;
           $_SESSION['user_id'] = $row['User_id'];
           $_SESSION['username'] = $row['Username'];
+          $_SESSION['real_name'] = $row['real_name']; // Store the real name in the session
           $_SESSION['user_type'] = $row['user_type'];
 
           header("Location: index.php");
           exit();
         } elseif ($row['user_type'] == 'admin') {
           $_SESSION['logged_in'] = true;
-          $_SESSION['user_id'] = $row['user_id'];
+          $_SESSION['user_id'] = $row['User_id'];
           $_SESSION['username'] = $row['Username'];
+          $_SESSION['real_name'] = $row['real_name']; // Store the real name in the session
           $_SESSION['user_type'] = $row['user_type'];
 
           header("Location: admin_panel/admin_homepage.php");
@@ -85,6 +82,14 @@ $conn->close();
     </form>
     <p>Don't have an account? <a href="registration.php">Register</a></p>
   </div>
+
+  <?php 
+  if(isset($_SESSION['alert'])) {
+    echo "<script>alert('".$_SESSION['alert']."');</script>";
+    unset($_SESSION['alert']); // remove the alert message from the session
+  }
+  ?>
+
 </body>
 
 </html>

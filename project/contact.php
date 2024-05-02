@@ -10,17 +10,40 @@
     <link rel="stylesheet" href="assets/css/contact.css">
 </head>
 <body>
-    <?php include('server/connection.php'); ?>
-    <?php include('navbar.php'); ?>
-    
+    <?php 
+    include('server/connection.php'); 
+    include('navbar.php'); 
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+        if(!isset($_SESSION['user_id'])) { 
+            $_SESSION['alert'] = "Please login to continue.";
+            header('Location: login.php');
+            exit();
+        }
+        $_user_id = $_SESSION['user_id'];
 
+        // Retrieve form data
+        $message = $_POST['message'];
+
+        // Prepare and bind the statement
+        $stmt = $conn->prepare("INSERT INTO contact_messages (user_id, message) VALUES (?, ?)");
+        $stmt->bind_param("is", $_user_id, $message);
+        
+        // Execute the statement
+        if ($stmt->execute()) {
+            echo "Message sent successfully.";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+        $stmt->close(); // Close the statement
+    }
+    ?>
+    
     <div class="container-contact">
         <h1>Contact Us</h1>
         <p>Have a question or feedback? Feel free to get in touch with us.</p>
         <div class="contact-form">
-            <form action="submit_contact.php" method="POST">
-                <input type="text" name="name" placeholder="Your Name" required><br>
-                <input type="email" name="email" placeholder="Your Email" required><br>
+            <form action="contact.php" method="POST">
                 <textarea name="message" placeholder="Your Message" rows="4" required></textarea><br>
                 <button type="submit">Submit</button>
             </form>

@@ -31,7 +31,6 @@ if (isset($_POST['checkout'])) {
         echo "<script>alert('Error: " . $conn->error . "');</script>";
     }
 
-    // Redirect user based on the URL they came from
     if (strpos($_SERVER['HTTP_REFERER'], 'product_description.php') !== false) {
         echo "<script>window.location.href='product_description.php?id=$product_id';</script>";
     } else if (strpos($_SERVER['HTTP_REFERER'], 'cart.php') !== false) {

@@ -54,26 +54,31 @@
         <button type="submit">Search</button>
     </form>
     
-    <?php
-        
-
-        $sql = "SELECT DISTINCT brand FROM products where type = 'product' ORDER BY brand ASC";
-        $result = $conn->query($sql);
-        ?>
-
-        <form action="#" method="GET" class="filter-form">
-            <select name="filter">
-                <option value="">Filter by Brand</option>
-                <?php
-        if ($result->num_rows > 0) {
-            while($row = $result->fetch_assoc()) {
-                echo '<option value="'.$row['brand'].'">'.$row['brand'].'</option>';
+    <form action="#" method="GET" class="filter-form">
+        <select name="brand">
+            <option value="">Filter by Brand</option>
+            <?php
+            $brand_result = $conn->query("SELECT DISTINCT brand FROM products where product_type='laptop'");
+            if ($brand_result->num_rows > 0) {
+                while($row = $brand_result->fetch_assoc()) {
+                    echo '<option value="'.$row['brand'].'">'.$row['brand'].'</option>';
+                }
             }
-        }
-        ?>
-    </select>
-    <button type="submit">Filter</button>
-</form>
+            ?>
+        </select>
+        <select name="type">
+            <option value="">Filter by Type</option>
+            <?php
+            $type_result = $conn->query("SELECT DISTINCT type FROM products");
+            if ($type_result->num_rows > 0) {
+                while($row = $type_result->fetch_assoc()) {
+                    echo '<option value="'.$row['type'].'">'.$row['type'].'</option>';
+                }
+            }
+            ?>
+        </select>
+        <button type="submit">Filter</button>
+    </form>
     <form action="#" method="GET">
         <button type="submit">Clear Filter</button>
     </form>
@@ -83,15 +88,19 @@
     <?php
     include_once 'server/connection.php';
 
-    $sql = "SELECT * FROM products WHERE type = 'product'";
+    $sql = "SELECT * FROM products WHERE product_type='laptop'";
 
     if (isset($_GET['search']) && !empty($_GET['search'])) {
         $search = $_GET['search'];
-        $sql .= " WHERE model LIKE '%$search%' OR brand LIKE '%$search%'";
+        $sql .= " AND (model LIKE '%$search%' OR brand LIKE '%$search%')";
     }
-    if (isset($_GET['filter']) && !empty($_GET['filter'])) {
-        $filter = $_GET['filter'];
-        $sql .= " AND brand = '$filter'";
+    if (isset($_GET['brand']) && !empty($_GET['brand'])) {
+        $brand = $_GET['brand'];
+        $sql .= " AND brand = '$brand'";
+    }
+    if (isset($_GET['type']) && !empty($_GET['type'])) {
+        $type = $_GET['type'];
+        $sql .= " AND type = '$type'";
     }
     $result = $conn->query($sql);
 

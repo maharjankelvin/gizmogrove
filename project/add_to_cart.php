@@ -43,6 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id']) && isset($_GET['so
             header('Location: index.php?added_to_cart=true');
         } elseif($source === 'product_description') {
             header('Location: product_description.php?id=' . $product_id . '&added_to_cart=true');
+        } elseif($source === 'compare') {
+            header('Location: compare.php?added_to_cart=true');
         } else {
             header('Location: index.php?added_to_cart=true');
         }
@@ -52,6 +54,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id']) && isset($_GET['so
             header('Location: index.php?error=product_not_found');
         } elseif($source === 'product_description') {
             header('Location: product_description.php?id=' . $product_id . '&error=product_not_found');
+        } elseif($source === 'compare') {
+            header('Location: compare.php?error=product_not_found');
         } else {
             header('Location: index.php?error=product_not_found');
         }

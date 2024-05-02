@@ -6,25 +6,6 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['remove_from_cart'])) {
-    $user_id = $_SESSION['user_id'];
-    if (isset($_POST['remove'])) {
-        echo "Form submitted. Remove array: ";
-        print_r($_POST['remove']); // Debug output
-
-        foreach ($_POST['remove'] as $product_id => $value) {
-            $sql = "DELETE FROM cart WHERE product_id = ? AND user_id = ?";
-            $stmt = $conn->prepare($sql);
-            $stmt->bind_param("ii", $product_id, $user_id);
-            $result = $stmt->execute();
-
-            echo "SQL query: $sql. Result: $result"; // Debug output
-        }
-    }
-    header("Location: cart.php"); 
-    exit();
-}
-
 $total = 0; 
 ?>
 
@@ -78,9 +59,10 @@ $total = 0;
                                     <div class="quantity-container">
                                         <input type="number" name="quantity[<?php echo $product_id; ?>]" value="<?php echo $quantity; ?>" min="1">
                                     </div>
-                                    <input type="checkbox" name="remove[<?php echo $product_id; ?>]" class="remove-checkbox" id="remove">
-                                    <label for="remove">Remove</label>
-                                    
+                                    <form action="remove_from_cart.php" method="post">
+                                    <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+                                    <button type="submit" name="remove_from_cart">Remove from Cart</button>
+                                    </form>
                                 </div>
                             </div>
                 <?php
@@ -91,6 +73,7 @@ $total = 0;
                     echo "<p>Your cart is empty.</p>";
                 }
                 ?>
+                
             </div>
         </form>
             <div class="total">
@@ -98,7 +81,6 @@ $total = 0;
             </div>
             <div class="actions">
                 <form action="checkout.php" method="post">
-                    <button type="submit" name="remove_from_cart">Remove Selected Items</button>
                     <button type="submit" name="proceed_to_checkout">Proceed to Checkout</button>
                     <input type="hidden" name="cart_id" value="<?php echo $cart_id; ?>">
                 </form>

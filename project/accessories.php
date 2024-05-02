@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>accessories Products</title>
     <style>
-        /* Add your CSS styles here */
         .header {
             text-align: center;
             margin-bottom: 20px;
@@ -54,46 +53,65 @@ include_once 'server/connection.php'; ?>
         <input type="text" name="search" placeholder="Search...">
         <button type="submit">Search</button>
     </form>
+
     <form action="#" method="GET" class="filter-form">
+    <?php
+    include_once 'server/connection.php';
+    $sqlBrand = "SELECT DISTINCT brand FROM products WHERE product_type = 'accessory'";
+    $resultBrand = $conn->query($sqlBrand);
+
+    $sqlType = "SELECT DISTINCT type FROM products WHERE product_type = 'accessory'";
+    $resultType = $conn->query($sqlType);
+    ?>
+    <select name="filterBrand">
+        <option value="">Filter by Brand</option>
         <?php
-        include_once 'server/connection.php';
-        $sql = "SELECT DISTINCT brand FROM products WHERE type = 'accessorie'";
-        $result = $conn->query($sql);
-        ?>
-        <select name="filter">
-            <option value="">Filter by Brand</option>
-            <?php
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    echo '<option value="'.$row['brand'].'">'.$row['brand'].'</option>';
-                }
+        if ($resultBrand->num_rows > 0) {
+            while($row = $resultBrand->fetch_assoc()) {
+                echo '<option value="'.$row['brand'].'">'.$row['brand'].'</option>';
             }
-            ?>
-        </select>
-        <button type="submit">Filter</button>
-    </form>
+        }
+        ?>
+    </select>
+    <select name="filterType">
+        <option value="">Filter by Type</option>
+        <?php
+        if ($resultType->num_rows > 0) {
+            while($row = $resultType->fetch_assoc()) {
+                echo '<option value="'.$row['type'].'">'.$row['type'].'</option>';
+            }
+        }
+        ?>
+    </select>
+    <button type="submit">Filter</button>
+</form>
+
     <form action="#" method="GET">
         <button type="submit">Clear Filter</button>
     </form>
 </div>
 
 <div class="content">
-    <?php
-    
 
-    $sql = "SELECT * FROM products WHERE type = 'accessorie'";
+<?php
+$sql = "SELECT * FROM products WHERE product_type = 'accessory'";
 
-    if (isset($_GET['search']) && !empty($_GET['search'])) {
-        $search = $_GET['search'];
-        $sql .= " WHERE model LIKE '%$search%' OR brand LIKE '%$search%'";
-    }
+if (isset($_GET['search']) && !empty($_GET['search'])) {
+    $search = $_GET['search'];
+    $sql .= " AND (model LIKE '%$search%' OR brand LIKE '%$search%')";
+}
 
-    if (isset($_GET['filter']) && !empty($_GET['filter'])) {
-        $filter = $_GET['filter'];
-        $sql .= " AND brand = '$filter'";
-    }
+if (isset($_GET['filterBrand']) && !empty($_GET['filterBrand'])) {
+    $filterBrand = $_GET['filterBrand'];
+    $sql .= " AND brand = '$filterBrand'";
+}
 
-    $result = $conn->query($sql);
+if (isset($_GET['filterType']) && !empty($_GET['filterType'])) {
+    $filterType = $_GET['filterType'];
+    $sql .= " AND type = '$filterType'";
+}
+
+$result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
@@ -102,7 +120,6 @@ include_once 'server/connection.php'; ?>
             <div class="product">
                 <img src="data:image/jpeg;base64,<?php echo base64_encode($row["product_image"]); ?>" alt="<?php echo $row["brand"] . " " . $row["model"]; ?>" />
                 <h3><?php echo $row["brand"] . " " . $row["model"]; ?></h3>
-                <p><?php echo $row["description"]; ?></p>
                 <p> rs <?php echo $row["price"]; ?></p>
                 <a href="./add_to_cart.php?id=<?php echo $row["product_id"]; ?>&source=laptops" class="btn-add-to-cart"><button>Add to cart</button></a>
                 <a href="./product_description.php?id=<?php echo $row["product_id"]; ?>" class="btn-view-product"><button>View Details</button></a>

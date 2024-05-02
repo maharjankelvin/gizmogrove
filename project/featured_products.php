@@ -1,8 +1,7 @@
 <?php
 
-$sql = "SELECT product_id, brand, model, price, product_image
+$sql = "SELECT *
  FROM Products
-WHERE type = 'product'
  ORDER BY RAND() 
  LIMIT 4";
 $all_product = $conn->query($sql);
@@ -105,7 +104,7 @@ $all_product = $conn->query($sql);
                 <a href="product_description.php?id=<?php echo $row["product_id"]; ?>">
                     <img src="<?php echo $image_src; ?>" width="100%" height="200px">
                     <h4><?php echo $row["brand"] . ' ' . $row["model"]; ?></h4>
-                    <p>rs <?php echo $row["price"]; ?></p>
+                    <p>Rs. <?php echo $row["price"]; ?></p>
                 </a>
                 <div>
                     <a href="add_to_cart.php?id=<?php echo $row["product_id"]; ?>&source=index" class="btn-add-to-cart">Add to Cart</a>

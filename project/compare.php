@@ -81,14 +81,10 @@
         <section class="laptop-selection">
             <h2>Select Laptops to Compare</h2>
             <form action="#" method="post">
-                <!-- Include PHP file for database connection -->
-                
-                
                 <select name="laptop1">
                     <option value="">Select Laptop 1</option>
-                    <!-- Populate options dynamically from database -->
                     <?php
-                    $sql = "SELECT product_id, brand, model, product_image FROM products";
+                    $sql = "SELECT product_id, brand, model, product_image FROM products where product_type='laptop'";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
@@ -99,9 +95,7 @@
                 </select>
                 <select name="laptop2">
                     <option value="">Select Laptop 2</option>
-                    <!-- Populate options dynamically from database -->
                     <?php
-                    // Reset the result pointer to use the same result set again
                     $result->data_seek(0);
                     if ($result->num_rows > 0) {
                         while($row = $result->fetch_assoc()) {
@@ -130,7 +124,7 @@
                         while($row = $result->fetch_assoc()) {
                             echo "<th>";
                             echo "<img src='data:image/jpeg;base64,".base64_encode($row['product_image'])."' alt='Product Image' style='max-width: 300px;'>"; // Adjust the max-width as needed
-                            echo "<br>Laptop ".$row['brand']." ".$row['model'];
+                            echo "<br> ".$row['brand']." ".$row['model'];
                             echo "</th>";
                         }
                         echo "</tr>";
@@ -160,10 +154,12 @@
                         echo "<th></th>";
                         $result->data_seek(0);
                         while($row = $result->fetch_assoc()) {
+                            
                             echo "<td>";
-                            echo "<button onclick='buyNow(".$row['product_id'].")'>Buy Now</button>";
-                            echo "<button onclick='addToCart(".$row['product_id'].")'>Add to Cart</button>";
+                            echo "<button onclick=\"location.href='checkout.php?product_id=".$row['product_id']."'\">Buy Now</button>";
+                            echo "<button onclick=\"location.href='add_to_cart.php?id=".$row['product_id']."&source=compare'\">Add to Cart</button>";
                             echo "</td>";
+                            
                         }
                         echo "</table>";
                         echo "</div>";
