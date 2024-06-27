@@ -13,7 +13,6 @@ $all_product = $conn->query($sql);
         padding: 10px 20px;
         margin-top: 10px;
         background-color: #007bff;
-        /* Blue color */
         color: #fff;
         text-decoration: none;
         border: none;
@@ -24,18 +23,15 @@ $all_product = $conn->query($sql);
     .btn-buy:hover,
     .btn-add-to-cart:hover {
         background-color: #0056b3;
-        /* Darker blue color on hover */
     }
 
     .alert {
         padding: 20px;
         background-color: #f44336;
-        /* Red color */
         color: white;
         margin-bottom: 15px;
     }
 
-    /* The close button */
     .closebtn {
         margin-left: 15px;
         color: white;
@@ -47,13 +43,19 @@ $all_product = $conn->query($sql);
         transition: 0.3s;
     }
 
-    /* When moving the mouse over the close button */
     .closebtn:hover {
         color: black;
     }
+    .image-comtainer{
+        width: 100%;
+        display: grid;
+        place-content: center;
+    }
+    .product-image {
+        aspect-ratio:1/1;
+    }
 </style>
 <script>
-    // JavaScript code to display alert messages
     document.addEventListener('DOMContentLoaded', function() {
         const params = new URLSearchParams(window.location.search);
         if (params.has('added_to_cart') && params.get('added_to_cart') === 'true') {
@@ -70,18 +72,15 @@ $all_product = $conn->query($sql);
 </script>
 
 <div class="small-container">
-    <h2 class="feature-title">Featured Products</h2>
+    <center><h2 class="feature-title">Featured Products</h2></center><br>
     <?php
-    // Check if the product was added to cart successfully and display an alert
     if (isset($_GET['added_to_cart']) && $_GET['added_to_cart'] == 'true') {
         echo '<div class="alert">';
         echo 'Product added to cart successfully!';
         echo '<span class="closebtn" onclick="this.parentElement.style.display=\'none\';">&times;</span>';
         echo '</div>';
     } elseif (isset($_GET['error'])) {
-        // Handle errors here if needed
         $error = $_GET['error'];
-        // Display appropriate error message based on error code
         echo '<div class="alert">';
         if ($error == 'product_not_found') {
             echo 'Error: Product not found!';
@@ -95,20 +94,22 @@ $all_product = $conn->query($sql);
 
     <div class="row">
         <?php while ($row = mysqli_fetch_assoc($all_product)) { ?>
-            <div class="col-4">
+            <div class="">
                 <?php
-                // Convert image data to base64
                 $image_data = base64_encode($row["product_image"]);
                 $image_src = 'data:image/jpeg;base64,' . $image_data;
                 ?>
                 <a href="product_description.php?id=<?php echo $row["product_id"]; ?>">
-                    <img src="<?php echo $image_src; ?>" width="100%" height="200px">
+                <div class="image-comtainer">
+
+                    <img src="<?php echo $image_src; ?>" width="100%" height="200px"class="product-image">
+                </div>
                     <h4><?php echo $row["brand"] . ' ' . $row["model"]; ?></h4>
                     <p>Rs. <?php echo $row["price"]; ?></p>
                 </a>
                 <div>
                     <a href="add_to_cart.php?id=<?php echo $row["product_id"]; ?>&source=index" class="btn-add-to-cart">Add to Cart</a>
-                    <a href="checkout.php?product_id=<?php echo $row["product_id"]; ?>" class="btn-buy">Buy Now</a>                </div>
+                </div>
             </div>
         <?php } ?>
     </div>

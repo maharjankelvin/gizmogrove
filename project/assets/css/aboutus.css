@@ -1,7 +1,6 @@
 .container {
     max-width: 800px;
     margin: auto;
-    padding: 20px;
     text-align: center;
 }
 
@@ -27,4 +26,9 @@
 .quote p {
     font-style: italic;
     color: #555;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
 }

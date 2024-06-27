@@ -12,6 +12,9 @@
             padding: 10px;
             margin: 20px;
         }
+        body {
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -49,6 +52,7 @@ include('server/connection.php'); ?>
                 echo "<form action='remove_from_user_wishlist.php' method='post'>";
                 echo "<input type='hidden' name='id' value='" . htmlspecialchars($product['product_id']) . "'>";
                 echo "<button type='submit'>Remove from wishlist</button>";
+                echo "<button onclick='window.location.href=\"add_to_cart.php?id=" . htmlspecialchars($product['product_id']) . "&source=wishlist\"' type='button'>Add to Cart</button>";
                 echo "</form>";
                 echo "</div>";
             }

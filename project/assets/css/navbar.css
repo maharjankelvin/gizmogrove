@@ -1,13 +1,10 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 .navbar {
     display: flex;
     align-items: center;
     padding: 10px;
+    margin-bottom: 10px;
+    background:radial-gradient(rgb(236, 236, 184),rgba(103, 211, 250, 0.747));
 }
 
 nav {

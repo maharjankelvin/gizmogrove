@@ -24,13 +24,12 @@
         </div>
     </div>
 
-    <!-------features catahories ------->
 
     <?php include('featured_catagory.php'); ?>
-
-    <!-- ========features products======= -->
     
     <?php include('featured_products.php'); ?>
+    
+    <br>
 
 <?php include 'footer.php'; ?>
 </body>

@@ -45,11 +45,11 @@
         }
 
         .comparison-table td:last-child {
-            text-align: right;
+            text-align: center;
         }
 
         .comparison-table td img {
-            max-width: 100px; /* Adjust the max-width as needed */
+            max-width: 100px; 
             height: auto;
             display: block;
             margin: 0 auto;
@@ -107,6 +107,7 @@
                 <button type="submit">Compare</button>
             </form>
         </section>
+        
         <section class="comparison-results">
             <h2>Comparison Results</h2>     
             <?php
@@ -129,7 +130,6 @@
                         }
                         echo "</tr>";
                         
-                        // Iterate over each laptop detail
                         $details = array(
                             "Processor" => "processor",
                             "RAM" => "ram",
@@ -156,7 +156,6 @@
                         while($row = $result->fetch_assoc()) {
                             
                             echo "<td>";
-                            echo "<button onclick=\"location.href='checkout.php?product_id=".$row['product_id']."'\">Buy Now</button>";
                             echo "<button onclick=\"location.href='add_to_cart.php?id=".$row['product_id']."&source=compare'\">Add to Cart</button>";
                             echo "</td>";
                             

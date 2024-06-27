@@ -1,0 +1,19 @@
+.notification-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.notification-list li {
+    border: 1px solid #000;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.notification-list li p {
+    margin: 0;
+}
+
+.notification-list li p:first-child {
+    font-weight: bold;
+    margin-bottom: 5px;
+}

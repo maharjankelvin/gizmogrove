@@ -1,10 +1,8 @@
 <?php
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Database connection
     include_once '../server/connection.php';
 
-    // Retrieve form data
     $type = $_POST['type'];
     $brand = $_POST['brand'];
     $model = $_POST['model'];
@@ -12,33 +10,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $description = $_POST['description'];
     $product_type = 'accessory';
 
-    // Process image upload
     $image = $_FILES['product_image'];
     $image_name = $image['name'];
     $image_tmp_name = $image['tmp_name'];
     $image_size = $image['size'];
 
-    // Check if image is uploaded successfully
     if ($image_size > 0) {
-        $image_data = file_get_contents($image_tmp_name); // Read image data
+        $image_data = file_get_contents($image_tmp_name); 
     } else {
         echo "Error: Image not uploaded.";
         exit();
     }
 
-    // Prepare and bind the statement
     $stmt = $conn->prepare("INSERT INTO products (type, product_type, brand, model, price, description, product_image) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("sssssss", $type, $product_type, $brand, $model, $price, $description, $image_data);
 
-    // Execute the statement
     if ($stmt->execute()) {
         echo "Accessory added successfully.";
     } else {
         echo "Error: " . $stmt->error;
     }
 
-    $stmt->close(); // Close the statement
-    $conn->close(); // Close the connection
+    $stmt->close(); 
+    $conn->close(); 
 }
 ?>
 <!DOCTYPE html>
@@ -48,11 +42,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Accessory</title>
     <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="../assets/css/admin_navbar.css">
+
     <script>
         function validateNumberInput(inputId) {
             var input = document.getElementById(inputId);
             if (parseInt(input.value) < 0) {
-                input.value = 0; // Reset to 0 if negative value entered
+                input.value = 0; 
             }
         }
     </script>
@@ -63,7 +59,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="container">
             <h2>Add Accessory</h2>
             <?php
-            // Check the session variable and show an alert if it's true
             if (isset($_SESSION['product_added']) && $_SESSION['product_added'] === true) {
                 echo '<script>alert("Accessory added successfully.");</script>';
                 unset($_SESSION['product_added']);  // Unset the variable so the alert won't show again

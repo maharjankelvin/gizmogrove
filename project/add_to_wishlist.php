@@ -7,7 +7,6 @@
         if(isset($_SESSION['user_id'])) {
             $user_id = $_SESSION['user_id'];
 
-            // Check if product is already in wishlist
             $check_stmt = $conn->prepare("SELECT * FROM wishlist WHERE user_id = ? AND product_id = ?");
             $check_stmt->bind_param("ii", $user_id, $product_id);
             $check_stmt->execute();

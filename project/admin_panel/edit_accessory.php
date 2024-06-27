@@ -1,6 +1,5 @@
 <?php
-include '../server/connection.php'; // Include your database connection file
-var_dump($_POST);
+include '../server/connection.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $product_id = $_POST['product_id'];
     $type = $_POST['type'];
@@ -10,7 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $product_image = $_POST['product_image'];
     $description = $_POST['description'];
 
-    // Handle the image upload
     if ($_FILES['image']['error'] == 0) {
         $target_dir = "../assets/images/";
         $target_file = $target_dir . basename($_FILES["image"]["name"]);

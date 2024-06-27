@@ -1,6 +1,4 @@
-/* admin.css */
 
-/* Reset default browser styles */
 body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, table, th, td {
     margin: 0;
     padding: 0;
@@ -8,7 +6,6 @@ body, h1, h2, h3, h4, h5, h6, p, ul, ol, li, table, th, td {
     font-family: Arial, sans-serif;
 }
 
-/* Global styles */
 body {
     background-color: #f0f0f0;
     color: #333;
@@ -22,6 +19,19 @@ header {
 .cointainer{
     margin: 20px;
     padding: 20px;
+}
+
+.statistics {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.statistic {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
 }
 
 nav ul {
@@ -77,3 +87,4 @@ table img {
     width: 200px;
     height: 200px;
 }
+

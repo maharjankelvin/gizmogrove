@@ -1,5 +1,5 @@
 <?php
-include '../server/connection.php'; // Include your database connection file
+include '../server/connection.php'; 
 
 $id = $_GET['id'];
 $sql = "DELETE FROM products WHERE id=?";

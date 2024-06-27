@@ -21,7 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id']) && isset($_GET['so
         $quantity = 1;
         $user_id = $_SESSION['user_id'];
 
-        // Assuming you have a logged in user with id $user_id
         $sql = "SELECT * FROM cart WHERE product_id = ? AND user_id = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("ii", $product_id, $user_id);

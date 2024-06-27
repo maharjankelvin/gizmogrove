@@ -9,7 +9,6 @@
                 </a>
             </div>
             <div class="col-3"> 
-                
                 <a href="accessories.php">
                     <img src="assets/images/accessory.png">
                     <center><h4>Accessories</h4></center>

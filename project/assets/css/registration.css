@@ -1,57 +1,59 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
 }
 
-div {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 400px; /* Increase the width of the div */
+.registration-container {
+    width: 300px;
+    padding: 16px;
+    background-color: white;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
 }
 
-h2 {
+.registration-container h2 {
     text-align: center;
-    margin-bottom: 20px;
+    color: #333;
 }
 
-form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 90%; /* Make the form width 100% */
+.registration-container form {
+    display: flex;
+    flex-direction: column;
 }
 
-label {
-    font-weight: bold;
+.registration-container label {
+    margin-bottom: 5px;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"] {
+.registration-container input[type="text"],
+.registration-container input[type="email"],
+.registration-container input[type="password"] {
     padding: 10px;
     margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: calc(100% - 10px); /* Adjust the width to accommodate padding and border */
+    border-radius: 4px;
+    border: 1px solid #ddd;
 }
 
-input[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
+.registration-container input[type="submit"] {
     padding: 10px;
+    background-color: #5cb85c;
+    color: white;
+    border-radius: 4px;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
 }
 
-input[type="submit"]:hover {
-    background: #0056b3; /* Darker shade of blue on hover */
+.registration-container input[type="submit"]:hover {
+    background-color: #4cae4c;
 }
+
+.registration-container p {
+    text-align: center;
+}
+.registration-container p a {
+    color: #5cb85c;
+    text-decoration: none;
+}
+    

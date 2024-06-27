@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laptop Products</title>
     <style>
-        /* Add your CSS styles here */
         .header {
             text-align: center;
             margin-bottom: 20px;
@@ -69,7 +68,7 @@
         <select name="type">
             <option value="">Filter by Type</option>
             <?php
-            $type_result = $conn->query("SELECT DISTINCT type FROM products");
+            $type_result = $conn->query("SELECT DISTINCT type FROM products where product_type='laptop'");
             if ($type_result->num_rows > 0) {
                 while($row = $type_result->fetch_assoc()) {
                     echo '<option value="'.$row['type'].'">'.$row['type'].'</option>';

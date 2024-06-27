@@ -1,3 +1,25 @@
+<?php  
+require_once('../server/connection.php'); 
+
+$result = $conn->query("SELECT COUNT(*) AS total FROM user_details");
+$row = $result->fetch_assoc();
+$total_users = $row['total'];
+
+$result = $conn->query("SELECT COUNT(*) AS total FROM products where product_type='laptop'");
+$row = $result->fetch_assoc();
+$total_laptops = $row['total'];
+
+$result = $conn->query("SELECT COUNT(*) AS total FROM products where product_type='accessory'");
+$row = $result->fetch_assoc();
+$total_accessories = $row['total'];
+
+$result = $conn->query("SELECT COUNT(*) AS total FROM checkoutdetails");
+$row = $result->fetch_assoc();
+$total_orders = $row['total'];
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,68 +27,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="../assets/css/admin.css">
-    <script>
-        function confirmDelete(productId) {
-            var confirmDelete = confirm("Are you sure you want to delete this product?");
-            if (confirmDelete) {
-                window.location.href = "delete_laptop.php?id=" + productId;
-            }
+    <link rel="stylesheet" href="../assets/css/admin_navbar.css">
+    <style>
+        .statistics {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 50px;
         }
-    </script>
+
+        .statistic {
+        background-color: #f1f1f1;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+        border: 1px solid #ddd;
+    }
+        .btn {
+        display: inline-block;
+        background-color: #007BFF;
+        color: white;
+        padding: 10px 20px;
+        margin-top: 10px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+    }
+
+.btn:hover {
+    background-color: #0056b3;
+}
+      </style>  
 </head>
 <body>
 <?php include('admin_nav_bar.php'); ?>
-<main>
     <div class="container">
-        <h2>laptop Management</h2><br>
-        <!-- Display products in a table -->
-        <div class="table-container">
-            <table>
-                <tr>
-                    <th>Product ID</th>
-                    <th>Brand</th>
-                    <th>Model</th>
-                    <th>Processor</th>
-                    <th>RAM</th>
-                    <th>Storage Capacity</th>
-                    <th>Graphics Card</th>
-                    <th>Display Size</th>
-                    <th>Resolution</th>
-                    <th>Price</th>
-                    <th>Product Image</th>
-                    <th>Actions</th>
-                </tr>
-                <?php
-                include_once '../server/connection.php';
-                $sql = "SELECT * FROM products";
-                $result = $conn->query($sql);
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . $row["product_id"] . "</td>";
-                        echo "<td>" . $row["brand"] . "</td>";
-                        echo "<td>" . $row["model"] . "</td>";
-                        echo "<td>" . $row["processor"] . "</td>";
-                        echo "<td>" . $row["ram"] . "</td>";
-                        echo "<td>" . $row["storage_capacity"] . "</td>";
-                        echo "<td>" . $row["graphics_card"] . "</td>";
-                        echo "<td>" . $row["display_size"] . "</td>";
-                        echo "<td>" . $row["resolution"] . "</td>";
-                        echo "<td>" . $row["price"] . "</td>";
-                        echo "<td><img src='data:image/jpeg;base64," . base64_encode($row["product_image"]) . "' width='200' height='200' /></td>";
-                        echo "<td><a href='edit_laptop.php?id=" . $row["product_id"] . "'>Edit</a> | <a href='#' onclick='confirmDelete(" . $row["product_id"] . ")'>Delete</a></td>";
-                        echo "</tr>";
-                    }
-                } else {
-                    echo "<tr><td colspan='12'>No products found.</td></tr>";
-                }
-                ?>
-            </table>
-        </div>
+        <main>
+            <div class="statistics">
+                <div class="statistic">
+                    <h2>Total Users</h2>
+                    <p><?php echo $total_users; ?></p>
+                    <a href="users.php" class="btn">Manage Users</a>
+                </div>
+                <div class="statistic">
+                    <h2>Total laptops</h2>
+                    <p><?php echo $total_laptops; ?></p>
+                    <a href="manage_laptops.php" class="btn">Manage laptops</a>
+                </div>
+                <div class="statistic">
+                    <h2>Total Accessories</h2>
+                    <p><?php echo $total_accessories; ?></p>
+                    <a href="manage_accessories.php" class="btn">Manage Accessories</a>
+                </div>
+                <div class="statistic">
+                    <h2>Total Orders</h2>
+                    <p><?php echo $total_orders; ?></p>
+                    <a href="orders.php" class="btn">Manage Orders</a>
+                </div>
+            </div>
+        </main>
     </div>
-</main>
-<footer>
-    <!-- Footer content goes here -->
-</footer>
 </body>
 </html>

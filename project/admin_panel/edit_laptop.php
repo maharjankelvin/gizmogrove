@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
 }
 
-$product_id = $_GET['id']; // Assuming 'id' is passed through the URL
+$product_id = $_GET['id'];
 $sql = "SELECT * FROM products WHERE product_id=$product_id";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();

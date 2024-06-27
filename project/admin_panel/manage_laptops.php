@@ -2,10 +2,10 @@
 require_once('../server/connection.php'); 
 
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
-    header("Location: add_accessories.php");
+    header("Location: add_laptops.php");
     exit();
 }
-$sql = "SELECT * FROM products where product_type='accessory'";
+$sql = "SELECT * FROM products where product_type='laptop'";
 $result = $conn->query($sql);
 ?>
 
@@ -15,43 +15,44 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Accessories</title>
+    <title>Manage Laptops</title>
     <link rel="stylesheet" href="../assets/css/admin.css">
     <link rel="stylesheet" href="../assets/css/admin_navbar.css">
+
     <style>
-        .accessories_table {
+        .laptops_table {
             margin: 20px;
         }
 
-        .accessories_table h1 {
+        .laptops_table h1 {
             text-align: center;
         }
 
-        .accessories_table table {
+        .laptops_table table {
             width: 100%;
             border-collapse: collapse;
         }
 
-        .accessories_table th {
+        .laptops_table th {
             background-color: #f2f2f2;
             text-align: left;
         }
 
-        .accessories_table th,
-        .accessories_table td {
+        .laptops_table th,
+        .laptops_table td {
             border: 1px solid #dddddd;
             padding: 8px;
         }
 
-        .accessories_table tr:nth-child(even) {
+        .laptops_table tr:nth-child(even) {
             background-color: #f2f2f2;
         }
 
-        .accessories_table tr:hover {
+        .laptops_table tr:hover {
             background-color: #f2f2f2;
         }
 
-        .accessories_table td a {
+        .laptops_table td a {
             margin-right: 10px;
         }
     </style>
@@ -59,8 +60,8 @@ $result = $conn->query($sql);
 
 <body>
     <?php include('admin_nav_bar.php'); ?>
-    <div class="accessories_table">
-    <h1>Manage Accessories</h1>
+    <div class="laptops_table">
+    <h1>Manage Laptops</h1>
     <table>
         <tr>
             <th>product_ID</th>
@@ -85,12 +86,12 @@ $result = $conn->query($sql);
                     <?php 
                         $imageData = $row['product_image'];
                         $encodedImage = base64_encode($imageData);
-                        echo "<img src='data:image/jpeg;base64,{$encodedImage}' alt='Accessory Image' width='100' height='100'>";
+                        echo "<img src='data:image/jpeg;base64,{$encodedImage}' alt='Laptop Image' width='100' height='100'>";
                     ?>
                 </td>
                 <td>
-                    <a href="edit_accessory.php?id=<?php echo $row['product_id']; ?>"> Edit </a>
-                    <a href="delete_accessory.php?id=<?php echo $row['product_id']; ?>"> Delete </a>
+                    <a href="edit_laptop.php?id=<?php echo $row['product_id']; ?>"> Edit </a>
+                    <a href="delete_laptop.php?id=<?php echo $row['product_id']; ?>"> Delete </a>
                 </td>
             </tr>
         <?php } ?>

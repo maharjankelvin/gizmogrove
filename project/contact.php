@@ -21,21 +21,18 @@
         }
         $_user_id = $_SESSION['user_id'];
 
-        // Retrieve form data
         $message = $_POST['message'];
 
-        // Prepare and bind the statement
         $stmt = $conn->prepare("INSERT INTO contact_messages (user_id, message) VALUES (?, ?)");
         $stmt->bind_param("is", $_user_id, $message);
         
-        // Execute the statement
         if ($stmt->execute()) {
             echo "Message sent successfully.";
         } else {
             echo "Error: " . $stmt->error;
         }
 
-        $stmt->close(); // Close the statement
+        $stmt->close(); 
     }
     ?>
     

@@ -1,4 +1,8 @@
  /* Add your CSS styles here */
+    body {
+            margin: 0;
+            padding: 0;
+        }
         .container {
             width: 80%;
             margin: auto;
@@ -37,7 +41,7 @@
             margin-right: 10px;
         }
         .quantity-container button {
-            background-color: #007bff;
+            background-color: #00ff0d;
             color: #fff;
             border: none;
             padding: 5px 10px;
@@ -59,7 +63,7 @@
         }
         .actions button {
             padding: 10px 20px;
-            background-color: #007bff;
+            background-color: #ff1100;
             color: #fff;
             border: none;
             border-radius: 5px;

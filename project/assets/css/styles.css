@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
 .navbar{
     display: flex;
@@ -107,20 +108,9 @@ image{
     width: 100%;
     height: auto; /* To maintain aspect ratio */
 }
-.feature-title{
+.h2 .featured-title{
     text-align: center;
-    margin : 0 auto 80 px;
-    position: relative;
-    line-height: 60px;
-    color:black;
-}
-.feature-title::after{
-    content:'';
-    background: rgba(103, 211, 250, 0.747);
-    width : 80px;
-    height:50px;
-    border-radius:5px;
-    position:absolute;
+    margin: 20px;
 }
 
 .cart-item img {
@@ -198,5 +188,3 @@ image{
 .container-products form button:hover {
     background-color: #555;
 }
-
-

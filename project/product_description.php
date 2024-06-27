@@ -4,7 +4,6 @@ include_once 'server/connection.php';
 if (isset($_GET['id'])) {
     $product_id = $_GET['id'];
 
-    // Fetch product details from the database
     $rating = "SELECT AVG(rating_value) as rating FROM ratings WHERE product_id = $product_id";
     $rating = $conn->query($rating);
 
@@ -50,9 +49,7 @@ if (isset($_GET['id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($product_name) ? $product_name : "Product Description"; ?></title>
     <style>
-        /* Add your CSS styles here */
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
         }
@@ -69,11 +66,9 @@ if (isset($_GET['id'])) {
 
         .product-info img {
             width: 300px;
-            /* Set the desired fixed width */
             height: auto;
             display: block;
             margin: 0 auto;
-            /* Center the image */
         }
 
         .product-info h2 {
@@ -121,7 +116,6 @@ if (isset($_GET['id'])) {
             <p>
                 <strong>
                     Rating:
-                    <!-- ratting in stars make it clickable to rate the product -->
                     <?php if ($rating->num_rows > 0) : ?>
                         <?php $row = $rating->fetch_assoc(); ?>
                         <?php for ($i = 1; $i <= 5; $i++) : ?>
@@ -142,7 +136,6 @@ if (isset($_GET['id'])) {
                     if(isset($_SESSION['user_id'])) {
                         $user_id = $_SESSION['user_id'];
             
-                        // Check if product is already in wishlist
                         $check_stmt = $conn->prepare("SELECT * FROM wishlist WHERE user_id = ? AND product_id = ?");
                         $check_stmt->bind_param("ii", $user_id, $product_id);
                         $check_stmt->execute();
@@ -184,14 +177,10 @@ if (isset($_GET['id'])) {
                 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) : ?>
                     <button><a href="add_to_cart.php?id=<?= $product_id ?>&source=product_description" class="btn-add-to-cart">Add to Cart</a>
                     </button>
-                    <button><a href="checkout.php?product_id=<?= $product_id ?>" class="btn-buy-now">Buy Now</a></button>
                 <?php else : ?>
                     <p>Please <a href="login.php">login</a> to purchase this product.</p>
                 <?php endif; ?>
             </div>
-
-
-
 
             <h3>Reviews</h3>
             <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) : ?>
@@ -221,5 +210,10 @@ if (isset($_GET['id'])) {
         </div>
     </div>
 </body>
+<script>
+    <?php if (isset($_GET['added_to_cart'])) : ?>
+        alert('Product added to cart.');
+    <?php endif; ?>
+</script>
 
 </html>
