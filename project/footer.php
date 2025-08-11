@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="footer-col-1">
                     <hr>
-                    <p class="copyright">&copy; GizmoGrove 2024</p>
+                    <p class="copyright">&copy; ShopEase 2024</p>
                 </div>
             </div>
         </div>

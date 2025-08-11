@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = ""; 
-$database = "gizmogrove";
+$database = "ShopEase";
 
 $conn = new mysqli($servername, $username, $password, $database);
 

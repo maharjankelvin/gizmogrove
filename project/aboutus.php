@@ -15,9 +15,9 @@
     <br>
     <div class="container">
         <h1>About Us</h1>
-        <p>Welcome to <span class="highlight">GizmoGrove</span>, your ultimate destination for the latest laptops and accessories. Our website is designed to provide an easy and enjoyable shopping experience, offering a curated selection of top-quality products from the best brands.</p>
-        <p>At <span class="highlight">GizmoGrove</span>, you can explore a wide range of laptops tailored for students, professionals, and gamers. Our intuitive interface helps you find the perfect device and accessories to meet your needs. We prioritize user satisfaction by providing detailed product descriptions, customer reviews, and expert recommendations.</p>
-        <p>Thank you for visiting <span class="highlight">GizmoGrove</span>. We are committed to enhancing your digital life with the best technology available.</p>
+        <p>Welcome to <span class="highlight">ShopEase</span>, your ultimate destination for the latest laptops and accessories. Our website is designed to provide an easy and enjoyable shopping experience, offering a curated selection of top-quality products from the best brands.</p>
+        <p>At <span class="highlight">ShopEase</span>, you can explore a wide range of laptops tailored for students, professionals, and gamers. Our intuitive interface helps you find the perfect device and accessories to meet your needs. We prioritize user satisfaction by providing detailed product descriptions, customer reviews, and expert recommendations.</p>
+        <p>Thank you for visiting <span class="highlight">ShopEase</span>. We are committed to enhancing your digital life with the best technology available.</p>
     </div>
     <?php include 'footer.php'; ?>
 </body>

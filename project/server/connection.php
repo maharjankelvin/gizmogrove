@@ -3,7 +3,7 @@ session_start();
 $servername= "localhost";
 $username = "root";
 $password = "";
-$dbname="gizmogrove";
+$dbname="ShopEase";
 
-$conn = mysqli_connect("localhost","root","","gizmogrove")
+$conn = mysqli_connect("localhost","root","","ShopEase")
         or die("could'nt connect to the database");
